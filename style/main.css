@@ -1,0 +1,69 @@
+body {
+    background-color: #2f3439;
+    color: white;
+    padding: 30px 0px;
+}
+
+.column {
+    text-align: center;
+    padding: 5px;
+}
+
+.progressbar {
+    height: 40px;
+    border: 1px solid white;
+}
+
+.progressbar-value {
+    width: 40%;
+    background-color: orange;
+    height: 38px;
+}
+
+.timer {
+    font-size: 55px;
+    font-weight: bolder;
+}
+
+.button {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.button:hover {
+    background-color: #24292e;
+    cursor: pointer;
+}
+
+.remote {
+    margin-top: 15px;
+}
+
+.options-button {
+    margin-top: 5px;
+    font-size: 25px;
+}
+
+.options-button:hover {
+    color: orange;
+    cursor: pointer;
+}
+
+.glyphicon {
+    font-weight: 700 !important;
+}
+
+.value {
+    font-size: 30px;
+    text-align: center;
+}
+
+.options{
+	margin-top: 40px;
+}
+
+.option{
+	margin-bottom: 25px;
+}
