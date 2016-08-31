@@ -51,7 +51,7 @@
 	const increaseButton = document.getElementById('increase-button');
 	const decreaseButton = document.getElementById('decrease-button');
 
-	let timer,initialMinutes=22;
+	let timer,initialMinutes=25;
 	renderOptions();
 	renderTimer(initialMinutes,0);
 
