@@ -70,7 +70,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 	var decreaseButton = document.getElementById('decrease-button');
 
 	var timer = void 0,
-	    initialMinutes = 22;
+	    initialMinutes = 25;
 	renderOptions();
 	renderTimer(initialMinutes, 0);
 
