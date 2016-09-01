@@ -12,7 +12,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 			this._minutes = this._initialMinutes = minutes;
 			this._seconds = this._initialSeconds = 0;
 			this.render = renderFunc;
-			this.render(this._minutes, this._seconds);
+			this.render(this._minutes, this._seconds, this._initialMinutes);
 			this.onStop = onStop;
 			this.paused = true;
 		}
@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 			key: 'start',
 			value: function start() {
 				this.intervalID = setInterval(this.update.bind(this), 1000);
-				this.render(this._minutes, this._seconds);
+				this.render(this._minutes, this._seconds, this._initialMinutes);
 				this.paused = false;
 			}
 		}, {
@@ -34,7 +34,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 						this._seconds = 59;
 					}
 				}
-				this.render(this._minutes, this._seconds);
+				this.render(this._minutes, this._seconds, this._initialMinutes);
 			}
 		}, {
 			key: 'stop',
@@ -48,7 +48,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 			key: 'pause',
 			value: function pause() {
 				clearInterval(this.intervalID);
-				this.render(this._minutes, this._seconds);
+				this.render(this._minutes, this._seconds, this._initialMinutes);
 				this.paused = true;
 			}
 		}]);
@@ -78,14 +78,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 		sessionLength.innerHTML = initialMinutes;
 	}
 
-	function renderTimer(minutes, seconds) {
+	function renderTimer(minutes, seconds, initialMinutes) {
 		clock.innerHTML = (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
+		progressBar.setValue(initialMinutes * 60, minutes * 60 + seconds);
 	}
 
 	function stop() {
 		pause();
 		timer = null;
-		renderTimer(initialMinutes, 0);
+		renderTimer(initialMinutes, 0, initialMinutes);
 	}
 
 	function play() {

@@ -15,7 +15,7 @@ body {
 }
 
 .progressbar-value {
-    width: 40%;
+    width: 0%;
     background-color: orange;
     height: 38px;
 }

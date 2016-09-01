@@ -5,13 +5,13 @@
 			this._minutes = this._initialMinutes = minutes;
 			this._seconds = this._initialSeconds = 0;
 			this.render = renderFunc;
-			this.render(this._minutes,this._seconds);
+			this.render(this._minutes,this._seconds,this._initialMinutes);
 			this.onStop = onStop;
 			this.paused = true;
 		}
 		start(){
 			this.intervalID = setInterval(this.update.bind(this),1000);
-			this.render(this._minutes,this._seconds);
+			this.render(this._minutes,this._seconds,this._initialMinutes);
 			this.paused = false;
 		}
 
@@ -23,7 +23,7 @@
 					this._seconds=59;
 				}
 			}
-			this.render(this._minutes,this._seconds);
+			this.render(this._minutes,this._seconds,this._initialMinutes);
 		}
 
 		stop(){
@@ -35,7 +35,7 @@
 
 		pause(){
 			clearInterval(this.intervalID);
-			this.render(this._minutes,this._seconds);
+			this.render(this._minutes,this._seconds,this._initialMinutes);
 			this.paused = true;
 		}
 	}
@@ -59,14 +59,15 @@
 		sessionLength.innerHTML = initialMinutes;
 	}
 
-	function renderTimer(minutes,seconds){
+	function renderTimer(minutes,seconds,initialMinutes){
 		clock.innerHTML = `${(minutes<10)?'0'+minutes:minutes}:${(seconds<10)?'0'+seconds:seconds}`;
+		progressBar.setValue(initialMinutes*60,minutes*60 + seconds);
 	}
 
 	function stop(){
 		pause();
 		timer = null;
-		renderTimer(initialMinutes,0);
+		renderTimer(initialMinutes,0,initialMinutes);
 	}
 
 	function play(){
