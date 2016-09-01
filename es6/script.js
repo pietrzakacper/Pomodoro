@@ -51,10 +51,10 @@
 	const increaseButton = document.getElementById('increase-button');
 	const decreaseButton = document.getElementById('decrease-button');
 
+	// declare variables
 	let timer,initialMinutes=25;
-	renderOptions();
-	renderTimer(initialMinutes,0);
 
+	//define functions
 	function renderOptions(){
 		sessionLength.innerHTML = initialMinutes;
 	}

@@ -69,11 +69,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 	var increaseButton = document.getElementById('increase-button');
 	var decreaseButton = document.getElementById('decrease-button');
 
+	// declare variables
 	var timer = void 0,
 	    initialMinutes = 25;
-	renderOptions();
-	renderTimer(initialMinutes, 0);
 
+	//define functions
 	function renderOptions() {
 		sessionLength.innerHTML = initialMinutes;
 	}
