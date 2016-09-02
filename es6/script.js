@@ -25,7 +25,7 @@
 	}
 
 	function stop(){
-		pause();
+		timer.pause.bind(timer)();
 		timer = null;
 		renderTimer(initialMinutes,0,initialMinutes);
 		makeActive(stopButton);
@@ -40,7 +40,8 @@
 	}
 
 	function pause(){
-		if(timer!=null){timer.pause.bind(timer)();
+		if(timer!=null){
+			timer.pause.bind(timer)();
 			makeActive(pauseButton);
 		}
 	}
