@@ -1,45 +1,5 @@
 (function(){
 
-	class Timer{
-		constructor(minutes,renderFunc,onStop){
-			this._minutes = this._initialMinutes = minutes;
-			this._seconds = this._initialSeconds = 0;
-			this.render = renderFunc;
-			this.render(this._minutes,this._seconds,this._initialMinutes);
-			this.onStop = onStop;
-			this.paused = true;
-		}
-		start(){
-			this.intervalID = setInterval(this.update.bind(this),1000);
-			this.render(this._minutes,this._seconds,this._initialMinutes);
-			this.paused = false;
-		}
-
-		update(){
-			if(--this._seconds === -1){
-				if(--this._minutes === -1){
-					this.stop();
-				} else{
-					this._seconds=59;
-				}
-			}
-			this.render(this._minutes,this._seconds,this._initialMinutes);
-		}
-
-		stop(){
-			this._minutes=this._initialMinutes;
-			this._seconds = this._initialSeconds;
-			this.pause();
-			this.onStop();
-		}
-
-		pause(){
-			clearInterval(this.intervalID);
-			this.render(this._minutes,this._seconds,this._initialMinutes);
-			this.paused = true;
-		}
-	}
-
 	//cache DOM
 		//timer
 	const clock = document.getElementById('clock');
@@ -68,6 +28,7 @@
 		pause();
 		timer = null;
 		renderTimer(initialMinutes,0,initialMinutes);
+		makeActive(stopButton);
 	}
 
 	function play(){
@@ -75,10 +36,13 @@
 			timer=new Timer(initialMinutes,renderTimer, stop);
 		}
 		if(timer.paused)timer.start.bind(timer)();
+		makeActive(playButton);
 	}
 
 	function pause(){
-		if(timer!=null)timer.pause.bind(timer)();
+		if(timer!=null){timer.pause.bind(timer)();
+			makeActive(pauseButton);
+		}
 	}
 
 	function increaseLengthOfSession(){
@@ -101,6 +65,11 @@
 		}
 	}
 
+	function makeActive(obj){
+		playButton.className = playButton.className.replace( ' button-active ', ' ' );
+		pauseButton.className = pauseButton.className.replace( ' button-active ' , ' ' );
+		if(obj!==stopButton)obj.className+=' button-active ';
+	}
 
 	//bind Events
 	playButton.addEventListener('click', play);
